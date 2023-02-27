@@ -1,5 +1,5 @@
 import "./App.css";
-import Header from "./components/Header/Header";
+import Header from "./components/Header/Header/Header";
 import Hotels from "./components/Hotels/Hotels";
 import Menu from "./components/Menu/Menu";
 
