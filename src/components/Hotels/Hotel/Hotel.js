@@ -2,7 +2,7 @@ import React from "react";
 import "./Hotel.css";
 import hotelImg from "../../../assets/img/hotel1.jpg";
 
-const Hotel = () => {
+const Hotel = ({hotel}) => {
   return (
     <div className="card hotel">
       <div className="card-body">
@@ -13,11 +13,11 @@ const Hotel = () => {
           <div className="col-8">
             <div className="row">
               <div className="col">
-                <p className="hotel__name">Pensjonat</p>
-                <span className="badge badge-light text-dark">miasto</span>
+                <p className="hotel__name">{hotel.name}</p>
+                <span className="badge badge-light text-dark">{hotel.city}</span>
               </div>
               <div className="col text-end">
-                <h5>Ocena:8.3</h5>
+                <h5>Ocena: {hotel.rating}</h5>
                 <a href="/" className="btn btn-primary mt-2 px-5">
               Pokaż
             </a>
