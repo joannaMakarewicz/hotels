@@ -1,5 +1,4 @@
 import './Searchbar.css';
-import { Button } from 'reactstrap';
 
 const SearchBar = () => {
   return (
@@ -9,7 +8,7 @@ const SearchBar = () => {
         type="text"
         placeholder="Szukaj..."
       />
-      <Button className='searchBar__button' color='primary'>Szukaj</Button>
+      <button className='ms-1 btn btn-secondary searchBar__button' color='primary'>Szukaj</button>
     </div>
   );
 };
