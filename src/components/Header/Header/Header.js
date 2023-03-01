@@ -2,11 +2,11 @@ import React from "react";
 import SearchBar from "../SearchBar/Searchbar";
 import "./Header.css";
 
-const Header = ({hotels, getHotels}) => {
+const Header = ({onSearch}) => {
   return (
     <header className='header container'>
       <div>
-        <SearchBar hotels={hotels} getHotels={getHotels}/>
+        <SearchBar onSearch={onSearch}/>
       </div>
     </header>
   );
