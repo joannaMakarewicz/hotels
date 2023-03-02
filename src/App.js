@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Header from "./components/Header/Header/Header";
+import SearchBar from "./components/Header/SearchBar/Searchbar";
 import Hotels from "./components/Hotels/Hotels";
 import Menu from "./components/Menu/Menu";
 
@@ -43,7 +44,9 @@ function App() {
 
   return (
     <div>
-      <Header onSearch={(input) => searchHandler(input)} />
+      <Header>
+        <SearchBar onSearch={(input) => searchHandler(input)}/>
+      </Header>
       <Menu />
       <Hotels hotels={hotels} />
     </div>
