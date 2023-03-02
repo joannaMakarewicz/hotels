@@ -3,7 +3,7 @@ import "./Header.css";
 
 const Header = (props) => {
   return (
-    <header className='header container'>
+    <header className='header'>
       <div>
         {props.children}
       </div>

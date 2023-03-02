@@ -24,7 +24,7 @@ const SearchBar = ({ onSearch }) => {
       />
       <button
         onClick={search}
-        className="ms-1 btn btn-secondary searchBar__button"
+        className="ms-1 btn btn-primary searchBar__button"
         color="primary">
         Szukaj
       </button>
