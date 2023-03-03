@@ -6,9 +6,14 @@ import Hotels from "./components/Hotels/Hotels";
 import Layout from "./components/Layout/Layout";
 import Menu from "./components/Menu/Menu";
 import Footer from "./components/Footer/Footer";
+import ColorItem from "./components/Header/ColorItem/ColorItem";
 
 function App() {
-  const theme="primary";
+  const [theme, setTheme] = useState("primary");
+
+  const changeTheme = () => {theme==='primary'?
+    setTheme('danger') : setTheme('primary');
+  }
 
   const basicHotels = [
     {
@@ -54,12 +59,13 @@ function App() {
     <Layout
       header={
         <Header>
-          <SearchBar onSearch={(input) => searchHandler(input)} />
+          <SearchBar onSearch={(input) => searchHandler(input)} theme={theme} />
+          <ColorItem changeTheme={changeTheme}/>
         </Header>
       }
-      menu={<Menu />}
-      content={<Hotels hotels={hotels} />}
-      footer={<Footer/>}
+      menu={<Menu theme={theme} />}
+      content={<Hotels hotels={hotels} theme={theme}/>}
+      footer={<Footer theme={theme}/>}
     />
   );
 }

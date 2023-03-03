@@ -2,7 +2,7 @@ import React from "react";
 import "./Hotel.css";
 import hotelImg from "../../../assets/img/hotel1.jpg";
 
-const Hotel = ({ hotel }) => {
+const Hotel = (props) => {
   return (
     <div className="card hotel">
       <div className="card-body">
@@ -13,12 +13,12 @@ const Hotel = ({ hotel }) => {
           <div className="col-8">
             <div className="row">
               <div className="col">
-                <p className="hotel__name">{hotel.name}</p>
-                <span className="badge bg-light text-dark">{hotel.city}</span>
+                <p className="hotel__name">{props.hotel.name}</p>
+                <span className="badge bg-light text-dark">{props.hotel.city}</span>
               </div>
               <div className="col text-end">
-                <h5>Ocena: {hotel.rating}</h5>
-                <a href="/" className="btn btn-primary mt-2 px-5">Pokaż</a>
+                <h5>Ocena: {props.hotel.rating}</h5>
+                <a href="/" className={`btn btn-${props.theme} mt-2 px-5`}>Pokaż</a>
               </div>
             </div>
           </div>

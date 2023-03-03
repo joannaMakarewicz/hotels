@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./Searchbar.css";
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = (props) => {
   const [input, setInput] = useState("");
 
   const search = () => {
-    onSearch(input);
+    props.onSearch(input);
   };
 
   const updateInput = (e) => {
@@ -24,8 +24,7 @@ const SearchBar = ({ onSearch }) => {
       />
       <button
         onClick={search}
-        className="ms-1 btn btn-primary searchBar__button"
-        color="primary">
+        className={`ms-1 btn btn-${props.theme} searchBar__button`}>
         Szukaj
       </button>
     </div>
