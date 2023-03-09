@@ -9,11 +9,20 @@ import Footer from "./components/Footer/Footer";
 import ColorItem from "./components/Header/ColorItem/ColorItem";
 
 function App() {
+
   const [theme, setTheme] = useState("primary");
 
-  const changeTheme = () => {theme==='primary'?
-    setTheme('danger') : setTheme('primary');
-  }
+  const changeThemePrimary = () => {
+    setTheme('primary');
+  };
+
+  const changeThemeSuccess = () => {
+    setTheme('success');
+  };
+
+  const changeThemeDanger = () => {
+    setTheme('danger');
+  };
 
   const basicHotels = [
     {
@@ -60,12 +69,12 @@ function App() {
       header={
         <Header>
           <SearchBar onSearch={(input) => searchHandler(input)} theme={theme} />
-          <ColorItem changeTheme={changeTheme}/>
+          <ColorItem changeThemeSuccess={changeThemeSuccess} changeThemeDanger={changeThemeDanger} changeThemePrimary={changeThemePrimary} />
         </Header>
       }
       menu={<Menu theme={theme} />}
-      content={<Hotels hotels={hotels} theme={theme}/>}
-      footer={<Footer theme={theme}/>}
+      content={<Hotels hotels={hotels} theme={theme} />}
+      footer={<Footer theme={theme} />}
     />
   );
 }
