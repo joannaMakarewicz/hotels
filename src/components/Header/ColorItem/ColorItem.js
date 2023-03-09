@@ -4,18 +4,15 @@ import "./ColorItem.css";
 const ColorItem = (props) => {
   return (
     <div className="colorItem d-flex justify-content-center">
-      <button
-        className="colorItem__button bg-success text-light"
-        onClick={props.changeThemeSuccess}
-      ></button>
-      <button
-        className="colorItem__button bg-primary text-light ms-2"
-        onClick={props.changeThemePrimary}
-      ></button>
-      <button
-        className="colorItem__button bg-danger text-light ms-2"
-        onClick={props.changeThemeDanger}
-      ></button>
+      {props.colors.map((el)=> {
+        return (
+          <button
+          className={`colorItem__button bg-${el.color} text-light ms-2`}
+          onClick={() => props.changeTheme(el.color)}
+          key={el.id}
+        ></button>
+        )
+      })}
     </div>
   );
 };

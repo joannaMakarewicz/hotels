@@ -10,18 +10,25 @@ import ColorItem from "./components/Header/ColorItem/ColorItem";
 
 function App() {
 
+
+  const colors = [
+    {
+      id: "1",
+      color: 'primary'
+    },
+    {
+      id: "2",
+      color: 'danger'
+    },
+    {
+      id: "3",
+      color: 'success'
+    }
+  ]
   const [theme, setTheme] = useState("primary");
 
-  const changeThemePrimary = () => {
-    setTheme('primary');
-  };
-
-  const changeThemeSuccess = () => {
-    setTheme('success');
-  };
-
-  const changeThemeDanger = () => {
-    setTheme('danger');
+ const changeTheme = (color) => {
+    setTheme(color);
   };
 
   const basicHotels = [
@@ -69,7 +76,7 @@ function App() {
       header={
         <Header>
           <SearchBar onSearch={(input) => searchHandler(input)} theme={theme} />
-          <ColorItem changeThemeSuccess={changeThemeSuccess} changeThemeDanger={changeThemeDanger} changeThemePrimary={changeThemePrimary} />
+          <ColorItem colors={colors} changeTheme={changeTheme}/>
         </Header>
       }
       menu={<Menu theme={theme} />}
