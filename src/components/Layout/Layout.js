@@ -2,12 +2,12 @@ import React from 'react';
 
 const Layout = (props) => {
   return (
-    <div>
-        <div>{props.header}</div>
+    <>
+        <>{props.header}</>
         <div className='container'>{props.menu}</div>
         <div className='container'>{props.content}</div>
-        <div>{props.footer}</div>
-    </div>
+        <>{props.footer}</>
+    </>
 
   )
 }
