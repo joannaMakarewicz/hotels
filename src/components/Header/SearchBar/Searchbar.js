@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Searchbar.css";
 
 const SearchBar = (props) => {
@@ -11,6 +11,15 @@ const SearchBar = (props) => {
   const updateInput = (e) => {
     setInput(e.target.value);
   };
+
+  const focusInput = () => {
+    const input = document.querySelector('.searchBar__input');
+    console.log(input.focus());
+  }
+
+  useEffect(() => {
+    focusInput();
+  }, [])
 
   return (
     <div className="searchBar d-flex">

@@ -1,5 +1,6 @@
 .searchBar__input {
-  border: 1px solid #0000;
+  border:none;
   border-radius: 6px;
+  outline: none;
   width: calc(100%-20px);
 }
