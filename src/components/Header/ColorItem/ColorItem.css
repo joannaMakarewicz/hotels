@@ -1,7 +1,9 @@
+.colorItem {
+    margin-top:16px;
+}
 .colorItem__button {
     border:none;
     border-radius:50%;
     height: 26px;
-    margin-top: 16px;
     width:26px;
 }
