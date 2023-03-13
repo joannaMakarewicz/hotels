@@ -7,7 +7,7 @@ const ColorItem = (props) => {
       {props.colors.map((el)=> {
         return (
           <button
-          className={`colorItem__button bg-${el.color} text-light ms-2`}
+          className={`colorItem__button bg-${el.color} text-light m-1 ms-2`}
           onClick={() => props.changeTheme(el.color)}
           key={el.id}
         ></button>
