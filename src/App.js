@@ -7,6 +7,7 @@ import Layout from "./components/Layout/Layout";
 import Menu from "./components/Menu/Menu";
 import Footer from "./components/Footer/Footer";
 import ColorItem from "./components/Header/ColorItem/ColorItem";
+import BestHotel from "./components/Hotels/BestHotel/BestHotel";
 
 const colors = [
   {
@@ -71,6 +72,14 @@ function App() {
     setHotels(filteredHotels);
   };
 
+  const getBestHotel = () => {
+    if (hotels.length < 2) {
+      return null;
+    } else {
+      return hotels.sort((a, b) => (a.rating > b.rating ? -1 : 1))[0];
+    }
+  };
+
   // useEffect(() => {
   //   setTimeout(() => {
   //     setHotels(basicHotels);
@@ -92,7 +101,11 @@ function App() {
         </Header>
       }
       menu={<Menu theme={theme} />}
-      content={<Hotels hotels={hotels} theme={theme} />
+      content={
+        <>
+          <BestHotel getBestHotel={getBestHotel} />
+          <Hotels hotels={hotels} theme={theme} />
+        </>
       }
       footer={<Footer theme={theme} />}
     />

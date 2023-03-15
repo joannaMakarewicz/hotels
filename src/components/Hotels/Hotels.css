@@ -1,7 +1,5 @@
 .hotels {
-    border: 1px solid #cdcdcd;
     margin: 10px auto;
-    padding:20px;
 }
 .hotels__heading {
     font-size: 1.2 rem;
