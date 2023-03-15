@@ -8,6 +8,7 @@ import Menu from "./components/Menu/Menu";
 import Footer from "./components/Footer/Footer";
 import ColorItem from "./components/Header/ColorItem/ColorItem";
 import BestHotel from "./components/Hotels/BestHotel/BestHotel";
+import InspiringQuote from "./components/InspiringQuote/InspiringQuote";
 
 const colors = [
   {
@@ -96,6 +97,7 @@ function App() {
     <Layout
       header={
         <Header>
+          <InspiringQuote/>
           <SearchBar onSearch={(input) => searchHandler(input)} theme={theme} />
           <ColorItem colors={colors} changeTheme={changeTheme} />
         </Header>
