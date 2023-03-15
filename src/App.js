@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import Header from "./components/Header/Header/Header";
 import SearchBar from "./components/Header/SearchBar/Searchbar";
@@ -72,13 +72,13 @@ function App() {
     setHotels(filteredHotels);
   };
 
-  const getBestHotel = () => {
-    if (hotels.length < 2) {
+  const getBestHotel = useCallback((options) => {
+    if (hotels.length < options.minHotels) {
       return null;
     } else {
       return hotels.sort((a, b) => (a.rating > b.rating ? -1 : 1))[0];
     }
-  };
+  }, [hotels]);
 
   // useEffect(() => {
   //   setTimeout(() => {

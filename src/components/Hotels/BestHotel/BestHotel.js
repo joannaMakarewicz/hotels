@@ -1,7 +1,7 @@
 import React from "react";
 
 const BestHotel = (props) => {
-    const hotel= props.getBestHotel();
+    const hotel= props.getBestHotel({minHotels:2});
     if(!hotel) return null;
 
   return (
