@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import "./App.css";
 import Header from "./components/Header/Header/Header";
 import SearchBar from "./components/Header/SearchBar/Searchbar";
@@ -9,6 +9,7 @@ import Footer from "./components/Footer/Footer";
 import ColorItem from "./components/Header/ColorItem/ColorItem";
 import BestHotel from "./components/Hotels/BestHotel/BestHotel";
 import InspiringQuote from "./components/InspiringQuote/InspiringQuote";
+import AuthContext from "./context/AuthContext";
 
 const colors = [
   {
@@ -58,8 +59,7 @@ const basicHotels = [
 function App() {
   const [theme, setTheme] = useState("primary");
   const [hotels, setHotels] = useState(basicHotels);
-  // const [loading, setLoading] = useState(true);
-  // const [isAutenticated, setIsAutenticated] = useState(false);
+  const [isAuthenticated, setIsAutenticated] = useState(false);
 
   const changeTheme = (color) => {
     setTheme(color);
@@ -73,27 +73,21 @@ function App() {
     setHotels(filteredHotels);
   };
 
-  const getBestHotel = useCallback((options) => {
-    if (hotels.length < options.minHotels) {
+  const getBestHotel = () => {
+    if (hotels.length < 2) {
       return null;
     } else {
       return hotels.sort((a, b) => (a.rating > b.rating ? -1 : 1))[0];
     }
-  }, [hotels]);
+  }
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setHotels(basicHotels);
-  //     setLoading(false);
-  //   }, 1000);
-  // }, []);
 
   return (
-    // <AuthContext.Provider value={{
-    //   isAutenticated : isAutenticated,
-    //   login: () => setIsAutenticated(true),
-    //   logout: () => setIsAutenticated(false),
-    // }}>
+    <AuthContext.Provider value={{ 
+      isAuthenticated: isAuthenticated,
+      login: () => setIsAutenticated(true),
+      logout: () => setIsAutenticated(false),
+    }}>
     <Layout
       header={
         <Header>
@@ -105,13 +99,13 @@ function App() {
       menu={<Menu theme={theme} />}
       content={
         <>
-          <BestHotel getBestHotel={getBestHotel} />
+         {getBestHotel() ? <BestHotel getBestHotel={getBestHotel} /> : null }
           <Hotels hotels={hotels} theme={theme} />
         </>
       }
       footer={<Footer theme={theme} />}
     />
-    // </AuthContext.Provider>
+ </AuthContext.Provider>
   );
 }
 
