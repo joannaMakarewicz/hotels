@@ -9,7 +9,7 @@ const Hotels = (props) => {
       <h2 className="hotels__heading">Oferty ({count})</h2>
       {props.hotels.length !== 0 ? props.hotels.map((hotel) => {
         return (
-        <Hotel hotel={hotel} key={hotel.id} theme={props.theme} />)}) : <p>Nie znaleziono noclegu.</p>
+        <Hotel onOpen={props.onOpen} hotel={hotel} key={hotel.id} theme={props.theme} />)}) : <p>Nie znaleziono noclegu.</p>
         }
     </div>
   );

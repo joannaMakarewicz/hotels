@@ -3,6 +3,10 @@ import "./Hotel.css";
 import hotelImg from "../../../assets/img/hotel1.jpg";
 
 const Hotel = (props) => {
+  const clickHandler = e => {
+    e.preventDefault();
+    props.onOpen(props.hotel)
+  }
   return (
     <div className="card hotel">
       <div className="card-body">
@@ -18,7 +22,7 @@ const Hotel = (props) => {
               </div>
               <div className="col text-end">
                 <h5>Ocena: {props.hotel.rating}</h5>
-                <a href="/" className={`btn btn-${props.theme} mt-2 px-5`}>Pokaż</a>
+                <a href="/" onClick={clickHandler} className={`btn btn-${props.theme} mt-2 px-5`}>Pokaż</a>
               </div>
             </div>
           </div>

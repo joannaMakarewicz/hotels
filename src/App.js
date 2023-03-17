@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Header from "./components/Header/Header/Header";
 import SearchBar from "./components/Header/SearchBar/Searchbar";
@@ -10,6 +10,8 @@ import ColorItem from "./components/Header/ColorItem/ColorItem";
 import BestHotel from "./components/Hotels/BestHotel/BestHotel";
 import InspiringQuote from "./components/InspiringQuote/InspiringQuote";
 import AuthContext from "./context/AuthContext";
+import LastHotel from "./components/Hotels/Hotel/LastHotel/LastHotel";
+import useStateStorage from "./hooks/useStateStorage";
 
 const colors = [
   {
@@ -60,6 +62,8 @@ function App() {
   const [theme, setTheme] = useState("primary");
   const [hotels, setHotels] = useState(basicHotels);
   const [isAuthenticated, setIsAutenticated] = useState(false);
+  const [lastHotel, setLastHotel] = useStateStorage('last-hotel', null);
+
 
   const changeTheme = (color) => {
     setTheme(color);
@@ -81,7 +85,11 @@ function App() {
     }
   }
 
+const openHotel = (hotel) => {
+setLastHotel(hotel);
 
+
+}
   return (
     <AuthContext.Provider value={{ 
       isAuthenticated: isAuthenticated,
@@ -99,8 +107,9 @@ function App() {
       menu={<Menu theme={theme} />}
       content={
         <>
+        {lastHotel ? <LastHotel lastHotel={lastHotel}/> : null}
          {getBestHotel() ? <BestHotel getBestHotel={getBestHotel} /> : null }
-          <Hotels hotels={hotels} theme={theme} />
+          <Hotels onOpen={openHotel} hotels={hotels} theme={theme} />
         </>
       }
       footer={<Footer theme={theme} />}
