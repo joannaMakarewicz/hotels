@@ -12,7 +12,6 @@ const BestHotel = (props) => {
       const minutes = Math.floor(leftTime / 60);
       const seconds = Math.floor(leftTime % 60);
       setTime(`${minutes} min. ${seconds} sec.`);
-      console.log(leftTime);
     }, 1000);
     return () => {
       console.log("Odmonotowany");

@@ -85,11 +85,9 @@ function App() {
     }
   }
 
-const openHotel = (hotel) => {
-setLastHotel(hotel);
+const openHotel = (hotel) => setLastHotel(hotel);
+const removeLastHotel = () => setLastHotel(null);
 
-
-}
   return (
     <AuthContext.Provider value={{ 
       isAuthenticated: isAuthenticated,
@@ -107,7 +105,7 @@ setLastHotel(hotel);
       menu={<Menu theme={theme} />}
       content={
         <>
-        {lastHotel ? <LastHotel lastHotel={lastHotel}/> : null}
+        {lastHotel ? <LastHotel lastHotel={lastHotel} onRemove={removeLastHotel}/> : null}
          {getBestHotel() ? <BestHotel getBestHotel={getBestHotel} /> : null }
           <Hotels onOpen={openHotel} hotels={hotels} theme={theme} />
         </>

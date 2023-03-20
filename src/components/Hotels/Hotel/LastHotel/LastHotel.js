@@ -1,6 +1,6 @@
 import React from "react";
 
-const LastHotel = ({lastHotel}) => {
+const LastHotel = ({lastHotel, onRemove}) => {
 
   return (
     <div className="card bg-light mb-2">
@@ -16,7 +16,7 @@ const LastHotel = ({lastHotel}) => {
           <button href="/" className="btn btn-sm btn-dark">
             Tak
           </button>
-          <button href="/" className="btn btn-sm btn-dark" >
+          <button onClick={onRemove} href="/" className="btn btn-sm btn-dark" >
             Nie
           </button>
         </div>
