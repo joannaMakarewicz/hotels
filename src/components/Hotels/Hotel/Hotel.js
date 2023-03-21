@@ -1,12 +1,14 @@
 import React from "react";
 import "./Hotel.css";
 import hotelImg from "../../../assets/img/hotel1.jpg";
+import { Link } from 'react-router-dom';
 
 const Hotel = (props) => {
-  const clickHandler = e => {
-    e.preventDefault();
-    props.onOpen(props.hotel)
-  }
+
+const clickHandler = e => {
+  props.onOpen(props);
+}
+
   return (
     <div className="card hotel">
       <div className="card-body">
@@ -22,7 +24,8 @@ const Hotel = (props) => {
               </div>
               <div className="col text-end">
                 <h5>Ocena: {props.hotel.rating}</h5>
-                <a href="/" onClick={clickHandler} className={`btn btn-${props.theme} mt-2 px-5`}>Pokaż</a>
+                <Link to={`/hotel/${props.hotel.id}`} onClick={clickHandler}>Pokaż</Link>
+
               </div>
             </div>
           </div>

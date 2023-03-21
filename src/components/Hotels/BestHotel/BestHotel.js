@@ -14,10 +14,9 @@ const BestHotel = (props) => {
       setTime(`${minutes} min. ${seconds} sec.`);
     }, 1000);
     return () => {
-      console.log("Odmonotowany");
       clearInterval(interval);
     };
-  }, []);
+  }, [endTime]);
 
   return (
     <div className="card bg-success text-light">
