@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Menu.css';
 import AuthContext from '../../context/AuthContext';
 
@@ -16,16 +16,22 @@ const Menu = (props) => {
     auth.logout();
   }
 
+
   return (
     <nav className='menu container'>
       <ul className='d-flex menu__container'>
         <li className='menu__item me-2'>
-          <Link className={`menu__link text-${props.theme}`} to="/">Home</Link>
+          <NavLink className= {({ isActive }) => (isActive ? 'active' : 'inactive')} to="/">Home</NavLink>
         </li>
         {auth.isAuthenticated ? (
+          <>
+          <li >
+            <NavLink className={({ isActive }) => (isActive ? 'active' : 'inactive')} to="/profil" >Mój profil</NavLink>
+          </li>
           <li >
             <a className={`text-decoration-none text-${props.theme}`} href="/" onClick={logout}>Wyloguj</a>
           </li>
+          </>
         ) : (
           <li>
             <a className={`text-decoration-none text-${props.theme}`} href="/" onClick={login}>Zaloguj</a>

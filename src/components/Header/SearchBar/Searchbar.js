@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Searchbar.css";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = (props) => {
   const [input, setInput] = useState("");
   const inputRef = useRef();
+  const history = useNavigate();
 
   const search = () => {
-    props.onSearch(input);
+    history(`/wyszukaj/${input}`);
   };
 
   const updateInput = (e) => {

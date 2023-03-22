@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const HotelPage = () => {
-  const { id } = useParams();
+  const { name } = useParams();
   const [hotel, setHotel] = useState({});
 
   const fetchHotel = () => {

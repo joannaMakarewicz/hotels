@@ -15,5 +15,13 @@
 }
 
 .menu__link {
+    text-decoration: underline;
+}
+
+.active {
+  text-decoration: underline;
+}
+
+.inactive {
     text-decoration: none;
 }

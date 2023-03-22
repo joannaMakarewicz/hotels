@@ -24,7 +24,7 @@ const clickHandler = e => {
               </div>
               <div className="col text-end">
                 <h5>Ocena: {props.hotel.rating}</h5>
-                <Link to={`/hotele/${props.hotel.id}`} onClick={clickHandler}>Pokaż</Link>
+                <Link to={`/hotele/${props.hotel.name}`} onClick={clickHandler}>Pokaż</Link>
 
               </div>
             </div>

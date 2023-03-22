@@ -12,6 +12,7 @@ import AuthContext from "./context/AuthContext";
 import Home from "./pages/Home";
 import HotelPage from "./pages/HotelPage";
 import Search from "./pages/Search";
+import Profile from "./pages/Profile";
 
 const colors = [
   {
@@ -62,22 +63,18 @@ function App() {
   const [theme, setTheme] = useState("primary");
   const [hotels, setHotels] = useState(basicHotels);
   const [isAuthenticated, setIsAutenticated] = useState(false);
- 
-
-
 
   const changeTheme = (color) => {
     setTheme(color);
   };
 
-
-
   const content = (
     <>
       <Routes>
-        <Route exact path="/" element={<Home hotels={hotels}/>}/>
-        <Route path="/hotele/:id" element={<HotelPage/>}/>
-        <Route path="/wyszukaj/:term" element={<Search/>}/>
+        <Route end path="/" element={<Home hotels={hotels}/>}/>
+        <Route path="/hotele/:name" element={<HotelPage/>}/>
+        <Route path="/profil" element={<Profile/>}/>
+        <Route path="/wyszukaj/:input" element={<Search/>}/>
       </Routes>
     </>
   );
