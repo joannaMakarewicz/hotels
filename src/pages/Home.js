@@ -3,8 +3,11 @@ import Hotels from "../components/Hotels/Hotels";
 import LastHotel from "../components/Hotels/Hotel/LastHotel/LastHotel";
 import BestHotel from "../components/Hotels/BestHotel/BestHotel";
 import useStateStorage from '../../src/hooks/useStateStorage';
+import useWebsiteTitle from '../../src/hooks/useWebsiteTitle';
 
 const Home = (props) => {
+    useWebsiteTitle("Strona główna");
+
     const [lastHotel, setLastHotel] = useStateStorage("last-hotel", null);
     
 
@@ -21,13 +24,13 @@ const Home = (props) => {
   const removeLastHotel = () => setLastHotel(null);
 
   return (
-    <div>
+    <>
       {lastHotel ? (
         <LastHotel lastHotel={lastHotel} onRemove={removeLastHotel} />
       ) : null}
       {getBestHotel() ? <BestHotel getBestHotel={getBestHotel} /> : null}
       <Hotels onOpen={openHotel} hotels={props.hotels} theme={props.theme} />
-    </div>
+    </>
   );
 };
 

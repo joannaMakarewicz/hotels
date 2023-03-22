@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import './Menu.css';
 import AuthContext from '../../context/AuthContext';
 
@@ -19,7 +20,7 @@ const Menu = (props) => {
     <nav className='menu container'>
       <ul className='d-flex menu__container'>
         <li className='menu__item me-2'>
-          <a className={`menu__link text-${props.theme}`} href='/'>Home</a>
+          <Link className={`menu__link text-${props.theme}`} to="/">Home</Link>
         </li>
         {auth.isAuthenticated ? (
           <li >

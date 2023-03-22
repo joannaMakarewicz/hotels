@@ -9,10 +9,9 @@ import Footer from "./components/Footer/Footer";
 import ColorItem from "./components/Header/ColorItem/ColorItem";
 import InspiringQuote from "./components/InspiringQuote/InspiringQuote";
 import AuthContext from "./context/AuthContext";
-
-import useWebsiteTitle from "./hooks/useWebsiteTitle";
 import Home from "./pages/Home";
 import HotelPage from "./pages/HotelPage";
+import Search from "./pages/Search";
 
 const colors = [
   {
@@ -65,20 +64,11 @@ function App() {
   const [isAuthenticated, setIsAutenticated] = useState(false);
  
 
-  useWebsiteTitle("Strona główna");
+
 
   const changeTheme = (color) => {
     setTheme(color);
   };
-
-  const searchHandler = (input) => {
-    const filteredHotels = basicHotels.filter((el) =>
-      el.name.toLowerCase().includes(input.toLowerCase())
-    );
-    console.log(filteredHotels);
-    setHotels(filteredHotels);
-  };
-
 
 
 
@@ -86,7 +76,8 @@ function App() {
     <>
       <Routes>
         <Route exact path="/" element={<Home hotels={hotels}/>}/>
-        <Route path="/hotel/:id" element={<HotelPage/>}/>
+        <Route path="/hotele/:id" element={<HotelPage/>}/>
+        <Route path="/wyszukaj/:term" element={<Search/>}/>
       </Routes>
     </>
   );
@@ -94,7 +85,7 @@ function App() {
   const header = (
     <Header>
       <InspiringQuote />
-      <SearchBar onSearch={(input) => searchHandler(input)} theme={theme} />
+      <SearchBar />
       <ColorItem colors={colors} changeTheme={changeTheme} />
     </Header>
   );
