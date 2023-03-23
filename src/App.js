@@ -62,6 +62,7 @@ const basicHotels = [
 ];
 
 function App() {
+
   const [theme, setTheme] = useState("primary");
   const [hotels, setHotels] = useState(basicHotels);
   const [isAuthenticated, setIsAutenticated] = useState(false);
@@ -77,9 +78,8 @@ function App() {
         <Route path="/hotele/:name" element={<HotelPage />} />
 
         <Route path="/profil" element={<Profile />}>
-          <Route path="edytuj" element={<ProfileDetails />} />
           <Route path="hotele" element={<MyHotels />} />
-          <Route path="" element={<p>Wybierz opcję</p>} />
+          <Route path="" element={<ProfileDetails />} />
         </Route>
         <Route path="/wyszukaj/:input" element={<Search />} />
       </Routes>

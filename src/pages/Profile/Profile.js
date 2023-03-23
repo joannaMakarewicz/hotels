@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, Link, NavLink } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 
 const Profile = () => {
   return (
@@ -10,7 +10,7 @@ const Profile = () => {
       <div className="card-body">
         <ul className="nav nav-tabs">
           <li className="nav-item">
-            <NavLink className="nav-link" to="/profil/edytuj">
+            <NavLink className="nav-link" end to="/profil">
               Profil
             </NavLink>
           </li>

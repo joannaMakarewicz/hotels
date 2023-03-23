@@ -1,9 +1,12 @@
-import React from 'react';
+import React from "react";
 
 const MyHotels = () => {
   return (
-<p>my hotels</p>
-  )
-}
+    <div>
+      <p>Nie masz żadnego hotelu</p>
+      <button className="btn btn-primary">Dodaj hotel</button>
+    </div>
+  );
+};
 
 export default MyHotels;
