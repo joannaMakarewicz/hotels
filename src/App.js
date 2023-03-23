@@ -12,7 +12,9 @@ import AuthContext from "./context/AuthContext";
 import Home from "./pages/Home";
 import HotelPage from "./pages/HotelPage";
 import Search from "./pages/Search";
-import Profile from "./pages/Profile";
+import Profile from "./pages/Profile/Profile";
+import ProfileDetails from "./pages/Profile/ProfileDetails/ProfileDetails";
+import MyHotels from "./pages/Profile/MyHotels/MyHotels";
 
 const colors = [
   {
@@ -71,10 +73,15 @@ function App() {
   const content = (
     <>
       <Routes>
-        <Route end path="/" element={<Home hotels={hotels}/>}/>
-        <Route path="/hotele/:name" element={<HotelPage/>}/>
-        <Route path="/profil" element={<Profile/>}/>
-        <Route path="/wyszukaj/:input" element={<Search/>}/>
+        <Route end path="/" element={<Home hotels={hotels} />} />
+        <Route path="/hotele/:name" element={<HotelPage />} />
+
+        <Route path="/profil" element={<Profile />}>
+          <Route path="edytuj" element={<ProfileDetails />} />
+          <Route path="hotele" element={<MyHotels />} />
+          <Route path="" element={<p>Wybierz opcję</p>} />
+        </Route>
+        <Route path="/wyszukaj/:input" element={<Search />} />
       </Routes>
     </>
   );

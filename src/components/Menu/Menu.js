@@ -29,7 +29,7 @@ const Menu = (props) => {
             <NavLink className={({ isActive }) => (isActive ? 'active' : 'inactive')} to="/profil" >Mój profil</NavLink>
           </li>
           <li >
-            <a className={`text-decoration-none text-${props.theme}`} href="/" onClick={logout}>Wyloguj</a>
+            <a className={`text-decoration-none text-${props.theme} ms-2`} href="/" onClick={logout}>Wyloguj</a>
           </li>
           </>
         ) : (
