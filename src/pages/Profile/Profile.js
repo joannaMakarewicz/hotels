@@ -1,7 +1,9 @@
 import React from "react";
 import { Outlet, NavLink } from "react-router-dom";
 
-const Profile = () => {
+const Profile = (props) => {
+
+
   return (
     <div className="card">
       <div className="card-header">

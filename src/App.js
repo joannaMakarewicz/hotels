@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState, lazy, Suspense } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header/Header/Header";
 import SearchBar from "./components/Header/SearchBar/Searchbar";
@@ -12,11 +12,11 @@ import AuthContext from "./context/AuthContext";
 import Home from "./pages/Home";
 import HotelPage from "./pages/HotelPage";
 import Search from "./pages/Search";
-import Profile from "./pages/Profile/Profile";
 import ProfileDetails from "./pages/Profile/ProfileDetails/ProfileDetails";
 import MyHotels from "./pages/Profile/MyHotels/MyHotels";
 import NotFound from "./pages/NotFound/NotFound";
 import Login from "./pages/Auth/Login/Login";
+const Profile = lazy(()=>import('./pages/Profile/Profile'));
 
 const colors = [
   {
@@ -67,7 +67,7 @@ function App() {
 
   const [theme, setTheme] = useState("primary");
   const [hotels, setHotels] = useState(basicHotels);
-  const [isAuthenticated, setIsAutenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const changeTheme = (color) => {
     setTheme(color);
@@ -75,10 +75,11 @@ function App() {
 
   const content = (
     <>
+    <Suspense fallback={<p>Ładowanie profilu...</p>}>
       <Routes>
         <Route path="/hotele/:name" element={<HotelPage />} />
 
-        <Route path="/profil" element={<Profile />}>
+        <Route path="/profil" element={ isAuthenticated ? <Profile/> : <Navigate to="/zaloguj"/> }>
           <Route path="hotele" element={<MyHotels />} />
           <Route path="" element={<ProfileDetails />} />
         </Route>
@@ -87,6 +88,7 @@ function App() {
         <Route end path="/" element={<Home hotels={hotels} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </Suspense>
     </>
   );
 
@@ -107,8 +109,8 @@ function App() {
       <AuthContext.Provider
         value={{
           isAuthenticated: isAuthenticated,
-          login: () => setIsAutenticated(true),
-          logout: () => setIsAutenticated(false),
+          login: () => setIsAuthenticated(true),
+          logout: () => setIsAuthenticated(false),
         }}
       >
         <Layout header={header} menu={menu} content={content} footer={footer} />
