@@ -15,6 +15,8 @@ import Search from "./pages/Search";
 import Profile from "./pages/Profile/Profile";
 import ProfileDetails from "./pages/Profile/ProfileDetails/ProfileDetails";
 import MyHotels from "./pages/Profile/MyHotels/MyHotels";
+import NotFound from "./pages/NotFound/NotFound";
+import Login from "./pages/Auth/Login/Login";
 
 const colors = [
   {
@@ -74,14 +76,16 @@ function App() {
   const content = (
     <>
       <Routes>
-        <Route end path="/" element={<Home hotels={hotels} />} />
         <Route path="/hotele/:name" element={<HotelPage />} />
 
         <Route path="/profil" element={<Profile />}>
           <Route path="hotele" element={<MyHotels />} />
           <Route path="" element={<ProfileDetails />} />
         </Route>
+        <Route path="/zaloguj" element={<Login />}/>
         <Route path="/wyszukaj/:input" element={<Search />} />
+        <Route end path="/" element={<Home hotels={hotels} />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
