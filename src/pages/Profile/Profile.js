@@ -3,7 +3,6 @@ import { Outlet, NavLink } from "react-router-dom";
 
 const Profile = (props) => {
 
-
   return (
     <div className="card">
       <div className="card-header">

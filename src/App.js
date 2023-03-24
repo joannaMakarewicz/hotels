@@ -1,5 +1,10 @@
 import React, { useState, lazy, Suspense } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header/Header/Header";
 import SearchBar from "./components/Header/SearchBar/Searchbar";
@@ -16,7 +21,9 @@ import ProfileDetails from "./pages/Profile/ProfileDetails/ProfileDetails";
 import MyHotels from "./pages/Profile/MyHotels/MyHotels";
 import NotFound from "./pages/NotFound/NotFound";
 import Login from "./pages/Auth/Login/Login";
-const Profile = lazy(()=>import('./pages/Profile/Profile'));
+import ErrorBoundary from "./hoc/ErrorBoundary";
+
+const Profile = lazy(() => import("./pages/Profile/Profile"));
 
 const colors = [
   {
@@ -64,7 +71,6 @@ const basicHotels = [
 ];
 
 function App() {
-
   const [theme, setTheme] = useState("primary");
   const [hotels, setHotels] = useState(basicHotels);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -75,19 +81,22 @@ function App() {
 
   const content = (
     <>
-    <Suspense fallback={<p>Ładowanie profilu...</p>}>
-      <Routes>
-        <Route path="/hotele/:name" element={<HotelPage />} />
+      <Suspense fallback={<p>Ładowanie profilu...</p>}>
+        <Routes>
+          <Route path="/hotele/:name" element={<HotelPage />} />
 
-        <Route path="/profil" element={ isAuthenticated ? <Profile/> : <Navigate to="/zaloguj"/> }>
-          <Route path="hotele" element={<MyHotels />} />
-          <Route path="" element={<ProfileDetails />} />
-        </Route>
-        <Route path="/zaloguj" element={<Login />}/>
-        <Route path="/wyszukaj/:input" element={<Search />} />
-        <Route end path="/" element={<Home hotels={hotels} />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          <Route
+            path="/profil"
+            element={isAuthenticated ? <Profile /> : <Navigate to="/zaloguj" />}
+          >
+            <Route path="hotele" element={<MyHotels />} />
+            <Route path="" element={<ProfileDetails />} />
+          </Route>
+          <Route path="/zaloguj" element={<Login />} />
+          <Route path="/wyszukaj/:input" element={<Search />} />
+          <Route end path="/" element={<Home hotels={hotels} />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </Suspense>
     </>
   );
@@ -113,7 +122,14 @@ function App() {
           logout: () => setIsAuthenticated(false),
         }}
       >
-        <Layout header={header} menu={menu} content={content} footer={footer} />
+        <ErrorBoundary>
+          <Layout
+            header={header}
+            menu={menu}
+            content={content}
+            footer={footer}
+          />
+        </ErrorBoundary>
       </AuthContext.Provider>
     </Router>
   );

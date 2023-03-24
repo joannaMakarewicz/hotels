@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import useWebsiteTitle from "../hooks/useWebsiteTitle";
 
 const HotelPage = () => {
   const { name } = useParams();
   const [hotel, setHotel] = useState({});
+
+  const setTitle = useWebsiteTitle();
 
   const fetchHotel = () => {
     setHotel(
@@ -15,8 +18,8 @@ const HotelPage = () => {
             description:
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             image: "",
-          },
-    )
+          });
+          setTitle('Hotel - Dębowy')
   };
 
 

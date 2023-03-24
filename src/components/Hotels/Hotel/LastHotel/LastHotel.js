@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 const LastHotel = ({lastHotel, onRemove}) => {
 
@@ -13,9 +14,9 @@ const LastHotel = ({lastHotel, onRemove}) => {
           <span className="badge bg-light text-dark">{lastHotel.city}</span>
         </div>
         <div style={{width:'100px'}} className="ml-auto d-flex justify-content-between">
-          <button href="/" className="btn btn-sm btn-dark">
+          <Link to={`/hotele/${lastHotel.id}`} className="btn btn-sm btn-dark">
             Tak
-          </button>
+          </Link>
           <button onClick={onRemove} href="/" className="btn btn-sm btn-dark" >
             Nie
           </button>

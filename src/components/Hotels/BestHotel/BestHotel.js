@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import moment from "moment/moment";
 
 const BestHotel = (props) => {
@@ -27,9 +28,9 @@ const BestHotel = (props) => {
           <p>Ocena: {hotel.rating}</p>
         </div>
 
-        <a href="/" className="btn btn-sm btn-light">
+        <Link to={`/hotele/${props.id}`} className="btn btn-sm btn-light">
           Pokaż
-        </a>
+        </Link>
         <p className="m-0 mt-3 fs-6">Do końca oferty pozostało: {time}</p>
       </div>
     </div>
