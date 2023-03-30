@@ -94,6 +94,7 @@ function App() {
           </Route>
           <Route path="/zaloguj" element={<Login />} />
           <Route path="/wyszukaj/:input" element={<Search />} />
+          <Route path="/hotels" element={<Navigate to='/'/>} />
           <Route end path="/" element={<Home hotels={hotels} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
