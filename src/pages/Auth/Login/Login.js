@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import LoadingButton from "../../../components/LoadingButton/LoadingButton";
 
 const Login = (props) => {
-  const [auth, setAuth]=useAuth();
+  const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading]=useState(false);
 
   const submit = (e) => {
     e.preventDefault();
-   setTimeout(() => {
-setAuth(true)
-navigate('/')
-   }, 500)
+    setTimeout(() => {
+      setAuth(true);
+      navigate("/");
+    }, 500);
   };
 
   return (
@@ -44,9 +46,10 @@ navigate('/')
             />
           </label>
         </div>
-        <button type="submit" className="btn btn-primary mt-4">
-          Submit
-        </button>
+        <div className="text-end">
+        <LoadingButton className="btn-success mt-4" loading={loading}>Zaloguj</LoadingButton>
+        </div>
+
       </form>
     </div>
   );
