@@ -1,19 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Menu.css';
-import AuthContext from '../../context/AuthContext';
+import useAuth from '../../hooks/useAuth';
 
 const Menu = (props) => {
-  const auth = useContext(AuthContext);
+  const [auth, setAuth] = useAuth();
 
   const login = (e) => {
     e.preventDefault();
-    auth.login();
+    setAuth(true);
   }
 
   const logout = (e) => {
     e.preventDefault();
-    auth.logout();
+    setAuth(false)
   }
 
 
@@ -23,7 +23,7 @@ const Menu = (props) => {
         <li className='menu__item me-2'>
           <NavLink className= {({ isActive }) => (isActive ? 'active' : 'inactive')} to="/">Home</NavLink>
         </li>
-        {auth.isAuthenticated ? (
+        {auth ? (
           <>
           <li >
             <NavLink className={({ isActive }) => (isActive ? 'active' : 'inactive')} to="/profil" >Mój profil</NavLink>
