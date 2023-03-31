@@ -144,10 +144,10 @@ const AddHotel = props => {
             error={form.status.error}
             showError={form.status.showError} />
 
-          <div className="text-right">
+          <div className="text-end">
             <button 
-              className="btn-success">
-                Dodaj hotel!
+              className="btn btn-success">
+                Dodaj hotel
             </button>
           </div>
 

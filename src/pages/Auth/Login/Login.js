@@ -1,12 +1,19 @@
 import React, { useState } from "react";
+import useAuth from "../../../hooks/useAuth";
+import { useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
+  const [auth, setAuth]=useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const submit = (e) => {
     e.preventDefault();
-    console.log(email, password);
+   setTimeout(() => {
+setAuth(true)
+navigate('/')
+   }, 500)
   };
 
   return (
