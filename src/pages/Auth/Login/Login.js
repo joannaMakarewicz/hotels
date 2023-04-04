@@ -42,7 +42,6 @@ const Login = (props) => {
               onChange={(e) => setEmail(e.target.value)}
               type="email"
               className="form-control"
-              aria-describedby="emailHelp"
             />
           </label>
         </div>

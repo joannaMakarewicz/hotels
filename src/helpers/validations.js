@@ -16,7 +16,7 @@ export function validateEmail(text) {
     }
   };
   
-  // validatation
+  // validation
   export function validate(rules = [], value) {
     for (let i = 0; i < rules.length; i++) {
       const rule = rules[i];

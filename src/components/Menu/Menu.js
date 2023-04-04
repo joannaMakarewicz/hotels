@@ -34,7 +34,7 @@ const Menu = (props) => {
           </>
         ) : (
           <li>
-            <a className={`text-decoration-none text-${props.theme}`} href="/" onClick={login}>Zaloguj</a>
+            <a className={`text-decoration-none text-${props.theme}`} href="/zaloguj" onClick={login}>Zaloguj</a>
           </li>
         )
         }
