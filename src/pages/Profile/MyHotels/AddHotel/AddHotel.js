@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import Input from '../../../../components/Input/Input';
+import LoadingButton from '../../../../components/LoadingButton/LoadingButton';
 import { validate } from '../../../../helpers/validations';
 
 const AddHotel = props => {
+  const [loading, setLoading]=useState(false);
   const [form, setForm] = useState({
     name: {
       value: '',
@@ -63,7 +65,11 @@ const AddHotel = props => {
 
   const submit = e => {
     e.preventDefault();
-    console.log('udało się wysłać')
+    setLoading(true);
+    console.log('udało się wysłać');
+    setTimeout(() => {
+      setLoading(false)
+    }, 500)
   }
 
   return (
@@ -145,10 +151,11 @@ const AddHotel = props => {
             showError={form.status.showError} />
 
           <div className="text-end">
-            <button 
+            <LoadingButton 
+            loading={loading}
               className="btn btn-success">
                 Dodaj hotel
-            </button>
+            </LoadingButton>
           </div>
 
         </form>

@@ -23,6 +23,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import Login from "./pages/Auth/Login/Login";
 import ErrorBoundary from "./hoc/ErrorBoundary";
 import AddHotel from "./pages/Profile/MyHotels/AddHotel/AddHotel";
+import Register from "./pages/Auth/Login/Register/Register";
 
 
 const Profile = lazy(() => import("./pages/Profile/Profile"));
@@ -96,6 +97,7 @@ function App() {
             <Route path="" element={<ProfileDetails />} />
           </Route>
           <Route path="/zaloguj" element={<Login />} />
+          <Route path="/rejestracja" element={<Register />} />
           <Route path="/wyszukaj/:input" element={<Search />} />
           <Route path="/hotels" element={<Navigate to='/'/>} />
           <Route end path="/" element={<Home hotels={hotels} />} />

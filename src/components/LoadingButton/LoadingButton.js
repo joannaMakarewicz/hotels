@@ -15,7 +15,7 @@ const LoadingButton = (props) => {
       <span className="sr-only">Ładowanie...</span>
     </button>
   ) : (
-    <button {...props} className={`btn ${className}`}>
+    <button {...buttonProps} className={`btn ${className}`}>
       {props.children}
     </button>
   );
