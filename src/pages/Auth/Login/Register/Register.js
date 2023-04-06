@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import LoadingButton from "../../../../components/LoadingButton/LoadingButton";
 import Input from "../../../../components/Input/Input";
 import { validate } from "../../../../helpers/validations";
-import axios from "../../../../axios/axios";
+import axiosNew from "axios";
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
@@ -28,13 +28,21 @@ const Register = () => {
     e.preventDefault();
     setLoading(true);
 
-    const res = await axios.get('/users.json')
-    console.log(res.data);
+    try {
+      const res = await axiosNew.post(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyADdc2_pX2CulasJq_8mHAl1WZQ8XPen5o",
+        {
+          email: form.email.value,
+          password: form.password.value,
+          returnSecureToken: true
+        }
+      );
+      console.log(res.data);
+    } catch (ex) {
+      console.log(ex.response);
+    }
 
-    navigate("/")
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
+    setLoading(false);
   };
 
   const changeHandler = (value, fieldName) => {
