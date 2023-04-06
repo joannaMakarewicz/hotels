@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import LoadingButton from "../../../../components/LoadingButton/LoadingButton";
 import Input from "../../../../components/Input/Input";
 import { validate } from "../../../../helpers/validations";
+import axios from "../../../../axios/axios";
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
@@ -23,10 +24,13 @@ const Register = () => {
     },
   });
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log("udało się wysłać");
+
+    const res = await axios.get('/users.json')
+    console.log(res.data);
+
     navigate("/")
     setTimeout(() => {
       setLoading(false);
