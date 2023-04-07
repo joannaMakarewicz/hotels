@@ -4,8 +4,10 @@ import LoadingButton from "../../../../components/LoadingButton/LoadingButton";
 import Input from "../../../../components/Input/Input";
 import { validate } from "../../../../helpers/validations";
 import axiosNew from "axios";
+import useAuth from "../../../../hooks/useAuth";
 
-const Register = () => {
+const Register = (props) => {
+  const [auth, setAuth] = useAuth();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -24,6 +26,12 @@ const Register = () => {
     },
   });
 
+  const [error, setError] = useState('');
+  const valid = !Object.values(form)
+                    .map(input => input.error)
+                    .filter(error => error)
+                    .length;
+
   const submit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -37,8 +45,14 @@ const Register = () => {
           returnSecureToken: true
         }
       );
-      console.log(res.data);
+      setAuth({
+        email: res.data.email,
+        token: res.data.idToken,
+        userId: res.data.localId,
+      });
+      navigate('/');
     } catch (ex) {
+      setError(ex.response.data.error.message);
       console.log(ex.response);
     }
 
@@ -58,6 +72,7 @@ const Register = () => {
       },
     });
   };
+
 
   return (
     <div className="card">
@@ -84,8 +99,12 @@ const Register = () => {
             showError={form.password.showError}
           />
 
+          {error ? (
+            <div className="alert alrert-danger">{error}</div>
+          ) : null}
+
           <div className="text-end">
-            <LoadingButton loading={loading} className="btn btn-success">
+            <LoadingButton loading={loading} disabled={!valid} className="btn btn-success">
               Zarejestruj
             </LoadingButton>
           </div>
