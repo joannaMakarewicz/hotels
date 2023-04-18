@@ -6,11 +6,6 @@ import useAuth from "../../hooks/useAuth";
 const Menu = (props) => {
   const [auth, setAuth] = useAuth();
 
-  const login = (e) => {
-    e.preventDefault();
-    setAuth(true);
-  };
-
   const logout = (e) => {
     e.preventDefault();
     setAuth(false);
@@ -60,8 +55,7 @@ const Menu = (props) => {
             <li>
               <NavLink
                 className={`text-decoration-none text-${props.theme} ms-2`}
-                to="/"
-                onClick={login}
+                to="/zaloguj"
               >
                 Zaloguj
               </NavLink>

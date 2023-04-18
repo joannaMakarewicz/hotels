@@ -1,4 +1,4 @@
-import React, { useState, lazy, Suspense } from "react";
+import React, { useState, lazy, Suspense, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -24,7 +24,6 @@ import Login from "./pages/Auth/Login/Login";
 import ErrorBoundary from "./hoc/ErrorBoundary";
 import AddHotel from "./pages/Profile/MyHotels/AddHotel/AddHotel";
 import Register from "./pages/Auth/Login/Register/Register";
-
 
 const Profile = lazy(() => import("./pages/Profile/Profile"));
 
@@ -78,6 +77,17 @@ function App() {
   const [hotels, setHotels] = useState(basicHotels);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  const checkUser = () => {
+    const tokenData = JSON.parse(window.localStorage.getItem('token-data'));
+    if(tokenData) {
+      setIsAuthenticated(true)
+  }
+}
+
+  useEffect(() => {
+    checkUser()
+  }, []);
+
   const changeTheme = (color) => {
     setTheme(color);
   };
@@ -99,7 +109,7 @@ function App() {
           <Route path="/zaloguj" element={<Login />} />
           <Route path="/rejestracja" element={<Register />} />
           <Route path="/wyszukaj/:input" element={<Search />} />
-          <Route path="/hotels" element={<Navigate to='/'/>} />
+          <Route path="/hotels" element={<Navigate to="/" />} />
           <Route end path="/" element={<Home hotels={hotels} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
@@ -139,6 +149,6 @@ function App() {
       </AuthContext.Provider>
     </Router>
   );
-}
+};
 
 export default App;

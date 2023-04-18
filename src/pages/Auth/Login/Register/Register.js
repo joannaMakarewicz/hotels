@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import LoadingButton from "../../../../components/LoadingButton/LoadingButton";
 import Input from "../../../../components/Input/Input";
 import { validate } from "../../../../helpers/validations";
-import axiosNew from "axios";
+import axios from "../../../../axios/axios-auth";
 import useAuth from "../../../../hooks/useAuth";
 
 const Register = (props) => {
@@ -37,15 +37,15 @@ const Register = (props) => {
     setLoading(true);
 
     try {
-      const res = await axiosNew.post(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyADdc2_pX2CulasJq_8mHAl1WZQ8XPen5o",
+      const res = await axios.post(
+        "accounts:signUp",
         {
           email: form.email.value,
           password: form.password.value,
           returnSecureToken: true
         }
       );
-      setAuth({
+      setAuth(true, {
         email: res.data.email,
         token: res.data.idToken,
         userId: res.data.localId,
@@ -72,6 +72,10 @@ const Register = (props) => {
       },
     });
   };
+
+  if (auth) {
+    navigate('/');
+  }
 
 
   return (
@@ -100,7 +104,7 @@ const Register = (props) => {
           />
 
           {error ? (
-            <div className="alert alrert-danger">{error}</div>
+            <div className="alert alert-danger">{error}</div>
           ) : null}
 
           <div className="text-end">
